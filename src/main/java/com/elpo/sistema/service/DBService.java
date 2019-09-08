@@ -11,11 +11,13 @@ import com.elpo.domain.IdadePaciente;
 import com.elpo.domain.PosicaoMembros;
 import com.elpo.domain.SuperficieSuporte;
 import com.elpo.domain.TpAnestesia;
+import com.elpo.domain.TpCirurgia;
 import com.elpo.repository.ComorbidadeRepository;
 import com.elpo.repository.IdadePacienteRepository;
 import com.elpo.repository.PosicaoMembrosRepository;
 import com.elpo.repository.SuperficieSuporteRepository;
 import com.elpo.repository.TpAnestesiaRepository;
+import com.elpo.repository.TpCirurgiaRepository;
 
 @Service
 public class DBService {
@@ -37,6 +39,9 @@ public class DBService {
 	
 	@Autowired
 	private TpAnestesiaRepository taRep;
+	
+	@Autowired
+	private TpCirurgiaRepository tcRep;
 	
 	/**
 	 * Método responsavel por criar os registros no ambiente de teste
@@ -83,6 +88,12 @@ public class DBService {
 		TpAnestesia ta5 = new TpAnestesia("Geral + Regional", 5);
 		taRep.saveAll(Arrays.asList(ta1,ta2,ta3,ta4,ta5));
 		
-		
+		System.out.println(">>>>>>>>>>>>> Criando Tipo de Cirurgia >>>>>>>>>>>>>>>>");
+		TpCirurgia tc1 = new TpCirurgia("até 1h", 1);
+		TpCirurgia tc2 = new TpCirurgia("acima de 1h até 2h", 2);
+		TpCirurgia tc3 = new TpCirurgia("acima de 2h até 4 hora", 3);
+		TpCirurgia tc4 = new TpCirurgia("acima de 4h até 6 horas", 4);
+		TpCirurgia tc5 = new TpCirurgia("acima de 6h", 5);
+		tcRep.saveAll(Arrays.asList(tc1,tc2,tc3,tc4,tc5));
 	}
 }
