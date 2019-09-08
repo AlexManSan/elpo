@@ -25,7 +25,24 @@ public class TpCirurgia extends GenericDomain {
     @Column(nullable = false)
     private Integer score;
 
-    public String getDescricao() {
+    /**
+     * Método Construtor vazio
+     */
+    public TpCirurgia() {}
+    
+    /**
+     * Método Construtor com atributos
+     * @param descricao
+     * @param score
+     */
+    public TpCirurgia(@NotNull(message = "O campo 'DESCRIÇÃO' é obrigatório.") String descricao,
+			@NotNull(message = "O campo 'SCORE' é obrigatório.") Integer score) {
+		super();
+		this.descricao = descricao;
+		this.score = score;
+	}
+    
+	public String getDescricao() {
         return descricao;
     }
     public void setDescricao(String descricao) {
