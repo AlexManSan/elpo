@@ -23,8 +23,27 @@ public class Comorbidade extends GenericDomain {
     @NotNull(message = "O campo SCORE é obrigatório.")
     @Column(nullable = false)
     private Integer score;
-
-    public String getDescricao() {
+    
+    /**
+     * Método Cosntrutor Vazio
+     */
+    public Comorbidade() {}
+    
+    /**
+     * Método Construtor com atributos
+     * @param descricao
+     * @param score
+     */
+    public Comorbidade(@NotNull @Size(min = 3, max = 200) String descricao,
+			@NotNull(message = "O campo SCORE é obrigatório.") Integer score) {
+		super();
+		this.descricao = descricao;
+		this.score = score;
+	}
+    
+    
+    
+	public String getDescricao() {
         return descricao;
     }
     public void setDescricao(String descricao) {

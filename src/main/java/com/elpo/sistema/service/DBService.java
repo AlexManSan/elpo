@@ -2,7 +2,10 @@ package com.elpo.sistema.service;
 
 import java.text.ParseException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.elpo.repository.ComorbidadeRepository;
 
 @Service
 public class DBService {
@@ -10,8 +13,8 @@ public class DBService {
 //	@Autowired
 //	private BCryptPasswordEncoder pe;
 
-//	@Autowired
-//	private CategoriaRepository catRep;
+	@Autowired
+	private ComorbidadeRepository cormoRep;
 	
 	
 	
@@ -20,13 +23,9 @@ public class DBService {
 	 * @throws ParseException
 	 */
 	public void instantiateTestDatabase() throws ParseException {
-//		System.out.println(">>>>>>>>>>>>> Criando Categorias >>>>>>>>>>>>>>>>");
-//		Categoria catc = new Categoria(null, "Carro");
-//		Categoria catm = new Categoria(null, "Moto");
-//		Categoria cato = new Categoria(null, "ônibus");
-//		Categoria catca = new Categoria(null, "Caminhão");
-//		catRep.saveAll(Arrays.asList(catc, catm, cato, catca)); 
-//		
+		System.out.println(">>>>>>>>>>>>> Criando Comorbidades >>>>>>>>>>>>>>>>");
+ 
+		
 //		System.out.println(">>>>>>>>>>>>> Criando Avaliadores >>>>>>>>>>>>>>>>");
 //		Avaliador av1 = new Avaliador(null, "Marcos Santos", true);
 //		Avaliador av2 = new Avaliador(null, "Manoel Oliveira", true);
