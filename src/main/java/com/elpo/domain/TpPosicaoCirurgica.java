@@ -31,7 +31,26 @@ public class TpPosicaoCirurgica extends GenericDomain {
  	@Fetch(FetchMode.SUBSELECT)
  	private List<Recomendacoes> recomendacoes;
 
-    public String getDescricao() {
+ 	/**
+ 	 * Método Construtor Vazio
+ 	 */
+ 	public TpPosicaoCirurgica() {}
+ 	
+ 	/**
+ 	 * Método cosntrutor com atributos
+ 	 * @param descricao
+ 	 * @param score
+ 	 * @param recomendacoes
+ 	 */
+    public TpPosicaoCirurgica(@NotNull(message = "O campo 'DESCRIÇÃO' é obrigatório.") String descricao,
+			@NotNull(message = "O campo 'SCORE' é obrigatório.") Integer score, List<Recomendacoes> recomendacoes) {
+		super();
+		this.descricao = descricao;
+		this.score = score;
+		this.recomendacoes = recomendacoes;
+	}
+    
+	public String getDescricao() {
         return descricao;
     }
     public void setDescricao(String descricao) {
