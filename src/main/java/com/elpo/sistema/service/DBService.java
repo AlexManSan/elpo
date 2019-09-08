@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.elpo.domain.Comorbidade;
 import com.elpo.domain.IdadePaciente;
+import com.elpo.domain.PosicaoMembros;
 import com.elpo.repository.ComorbidadeRepository;
 import com.elpo.repository.IdadePacienteRepository;
+import com.elpo.repository.PosicaoMembrosRepository;
 
 @Service
 public class DBService {
@@ -22,6 +24,9 @@ public class DBService {
 	
 	@Autowired
 	private IdadePacienteRepository idadePacRep;
+	
+	@Autowired
+	private PosicaoMembrosRepository posMemRep;
 	
 	/**
 	 * Método responsavel por criar os registros no ambiente de teste
@@ -42,32 +47,17 @@ public class DBService {
 		IdadePaciente ip3 = new IdadePaciente("Entre 60 e 69 anos", 3);
 		IdadePaciente ip4 = new IdadePaciente("Entre 70 e 79 anos", 4);
 		IdadePaciente ip5 = new IdadePaciente("> 80 anos", 5);
-		
 		idadePacRep.saveAll(Arrays.asList(ip1,ip2,ip3,ip4,ip5)); 		
-//		
-//		System.out.println(">>>>>>>>>>>>> Criando Faltas >>>>>>>>>>>>>>>>");
-//		String EA="A- Iniciar a prova sem estar com o capacete devidamente ajustado a cabeça ou sem viseira ou óculos de proteção.";
-//		String EB="B- Descumprimento do percurso pré-estabelecido.";
-//		String EC="C- Abalroar em um ou mais cones de balizamento.";
-//		String ED="D- Cair do veículo durante a prova.";
-//		String EE="E- Não manter equilíbrio na pracha, saindo lateralmente da mesma.";
-//		String EF="F- Avançar sobre o meio fio ou parada obrigatória.";
-//		String EG="G- Colocar o(s) pé(s) no chão, com o veículo em movimento.";
-//		String EH="H- Fazer percurso com farol apagado.";
-//		String EI="I- Cometer qualquer outra infração de trânsito de natureza gravíssima.";
-//		String N="Nenhuma falta cometida.";
-//		
-//		Falta fe1 = new Falta(null, EA, catm, 5);
-//		Falta fe2 = new Falta(null, EB, catm, 5);
-//		Falta fe3 = new Falta(null, EC, catm, 5);
-//		Falta fe4 = new Falta(null, ED, catm, 5);
-//		Falta fe5 = new Falta(null, EE, catm, 5);
-//		Falta fe6 = new Falta(null, EF, catm, 5);
-//		Falta fe7 = new Falta(null, EG, catm, 5);
-//		Falta fe8 = new Falta(null, EH, catm, 5);
-//		Falta fe9 = new Falta(null, EI, catm, 5);
-//		Falta fen = new Falta(null, N, catm, 5);
-//		
+		
+		System.out.println(">>>>>>>>>>>>> Criando Posição dos membros >>>>>>>>>>>>>>>>");
+		PosicaoMembros pm1 = new PosicaoMembros("Posição Anatômica", 1);
+		PosicaoMembros pm2 = new PosicaoMembros("Abertura dos membros superiores < 90º", 2);
+		PosicaoMembros pm3 = new PosicaoMembros("Elevação dos joelhos < 90º e abertura dos membros inferiores < 90º ou pescoço sem alinhamento mento-esternal", 3);
+		PosicaoMembros pm4 = new PosicaoMembros("Elevação dos joelhos > 90º ou abertura dos membros inferiores > 90º", 4);
+		PosicaoMembros pm5 = new PosicaoMembros("Elevação dos joelhos > 90º e abertura dos membros inferiores > 90º ou abertura dos membros superiores > 90º", 5);
+		posMemRep.saveAll(Arrays.asList(pm1,pm2,pm3,pm4,pm5));
+		
+		
 //		String GA="A- Deixar de colocar um é no chão e outro no freio para parar o veículo.";
 //		String GB="B- Invadir qualquer faixa durante o percurso.";
 //		String GC="C- Fazer incorretamente a sinalização ou deixar de fazê-la.";
