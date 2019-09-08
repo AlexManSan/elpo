@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.elpo.domain.Comorbidade;
 import com.elpo.domain.IdadePaciente;
 import com.elpo.domain.PosicaoMembros;
+import com.elpo.domain.SuperficieSuporte;
 import com.elpo.repository.ComorbidadeRepository;
 import com.elpo.repository.IdadePacienteRepository;
 import com.elpo.repository.PosicaoMembrosRepository;
+import com.elpo.repository.SuperficieSuporteRepository;
 
 @Service
 public class DBService {
@@ -27,6 +29,9 @@ public class DBService {
 	
 	@Autowired
 	private PosicaoMembrosRepository posMemRep;
+	
+	@Autowired
+	private SuperficieSuporteRepository ssRep;
 	
 	/**
 	 * Método responsavel por criar os registros no ambiente de teste
@@ -56,63 +61,17 @@ public class DBService {
 		PosicaoMembros pm4 = new PosicaoMembros("Elevação dos joelhos > 90º ou abertura dos membros inferiores > 90º", 4);
 		PosicaoMembros pm5 = new PosicaoMembros("Elevação dos joelhos > 90º e abertura dos membros inferiores > 90º ou abertura dos membros superiores > 90º", 5);
 		posMemRep.saveAll(Arrays.asList(pm1,pm2,pm3,pm4,pm5));
-		
-		
-//		String GA="A- Deixar de colocar um é no chão e outro no freio para parar o veículo.";
-//		String GB="B- Invadir qualquer faixa durante o percurso.";
-//		String GC="C- Fazer incorretamente a sinalização ou deixar de fazê-la.";
-//		String GD="D- Conduzir o veículo durante o exame sem segurar o guidom com ambas as mãos, salvo eventualmente para indicação de manobra.";
-//		String GE="E- Cometer qualquer outra infração de trânsito de natureza grave.";
-//		
-//		Falta fg1 = new Falta(null, GA, catm, 3);
-//		Falta fg2 = new Falta(null, GB, catm, 3);
-//		Falta fg3 = new Falta(null, GC, catm, 3);
-//		Falta fg4 = new Falta(null, GD, catm, 3);
-//		Falta fg5 = new Falta(null, GE, catm, 3);
-//		Falta fgn = new Falta(null, N, catm, 3);
-//		
-//		String MA="A- Utilizar incorretamente os equipamentos.";
-//		String MB="B- Engrenar ou utilizar marchas inadequadas durante o percurso.";
-//		String MC="C- Não recolher o pedal de partida ou o suporte do veículo, antes de iniciar o percurso.";
-//		String MD="D- Interrromper o funcionamento do motor sem justa razão, após o início da prova.";
-//		String ME="E- Cometer qualquer outra infração de trânsito de natureza média.";
-//		
-//		Falta fm1 = new Falta(null, MA, catm, 2);
-//		Falta fm2 = new Falta(null, MB, catm, 2);
-//		Falta fm3 = new Falta(null, MC, catm, 2);
-//		Falta fm4 = new Falta(null, MD, catm, 2);
-//		Falta fm5 = new Falta(null, ME, catm, 2);
-//		Falta fmn = new Falta(null, N, catm, 2);
-//		
-//		String LA="A- Colocar o motor em funcionamento quando já engrenado.";
-//		String LB="B- Conduzir o veículo provocando movimento irregular no mesmo sem motivo justificado.";
-//		String LC="C- Regular espelhos retrovisores durante o percurso do exame.";
-//		String LD="D- Cometer qualquer outra infração de trânsito de natureza leve.";
-//		
-//		
-//		Falta fl1 = new Falta(null, LA, catm, 1);
-//		Falta fl2 = new Falta(null, LB, catm, 1);
-//		Falta fl3 = new Falta(null, LC, catm, 1);
-//		Falta fl4 = new Falta(null, LD, catm, 1);
-//		Falta fln = new Falta(null, N, catm, 1);
-//		
-//		faltaRep.saveAll(Arrays.asList(fe1,fe2,fe3,fe4,fe5,fe6,fe7,fe8,fe9,fen,
-//				fg1,fg2,fg3,fg4,fg5,fgn, fm1,fm2,fm3,fm4,fm5,fmn, fl1,fl2,fl3,fl4,fln));
-//		
-//		System.out.println(">>>>>>>>>>>>> Criando Marcas >>>>>>>>>>>>>>>>");
-//		Marca fiat = new Marca(null, "FIAT");
-//		Marca chevrolet = new Marca(null, "CHEVROLET");
-//		Marca ford = new Marca(null, "FORD");
-//		Marca renault = new Marca(null, "RENAULT");
-//		Marca volkswagen = new Marca(null, "VOLKSWAGEN");
-//		Marca honda = new Marca(null, "HONDA");
-//		Marca yamaha = new Marca(null, "YAMAHA");
-//		Marca mercedes = new Marca(null, "MERCEDES");
-//		
-//		marcaRep.saveAll(Arrays.asList(fiat, chevrolet, ford, renault, volkswagen, honda, yamaha, mercedes)); 
-//		
+			
+		System.out.println(">>>>>>>>>>>>> Criando Superficie de suporte >>>>>>>>>>>>>>>>");
+		SuperficieSuporte ss1 = new SuperficieSuporte("Colchão de mesa cirúrgica de viscoelástico + coxins de viscoelástico", 1);
+		SuperficieSuporte ss2 = new SuperficieSuporte("Colchão de mesa cirúrgica de espuma (convencional) + coxins de viscoelástico", 2);
+		SuperficieSuporte ss3 = new SuperficieSuporte("Colchão de mesa cirúrgica de espuma (convencional) + coxins de espuma", 3);
+		SuperficieSuporte ss4 = new SuperficieSuporte("Colchão de mesa cirúrgica de espuma (convencional) + coxins feitos de campos de algodão", 4);
+		SuperficieSuporte ss5 = new SuperficieSuporte("Sem uso de superfície de suporte ou suportes rígidos sem acolchoamento ou perneiras estreitas", 5);
+		ssRep.saveAll(Arrays.asList(ss1,ss2,ss3,ss4,ss5));
+				
 //		System.out.println(">>>>>>>>>>>>> Criando Veículos >>>>>>>>>>>>>>>>");
-//		
+		
 //		Veiculo m1 = new Veiculo(null, honda, "Titan 160c", "LOK-2551", catm, true);
 //		Veiculo m2 = new Veiculo(null, honda, "Titan 125c", "LOK-2552", catm, true);
 //		Veiculo m3 = new Veiculo(null, yamaha, "Fazer 150c", "LOK-2553", catm, true);
