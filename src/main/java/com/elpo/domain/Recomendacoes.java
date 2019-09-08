@@ -14,7 +14,25 @@ public class Recomendacoes extends GenericDomain{
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private TpPosicaoCirurgica tpPosicaoCirurgica;
+	
+	/**
+	 * Construtor Vazio
+	 */
+	public Recomendacoes() {}
 
+	/**
+	 * Construtor com atributos
+	 * @param regiaoCorpo
+	 * @param recomendacoes
+	 * @param tpPosicaoCirurgica
+	 */
+	public Recomendacoes(String regiaoCorpo, String recomendacoes, TpPosicaoCirurgica tpPosicaoCirurgica) {
+		super();
+		this.regiaoCorpo = regiaoCorpo;
+		this.recomendacoes = recomendacoes;
+		this.tpPosicaoCirurgica = tpPosicaoCirurgica;
+	}
+	
 	public String getRegiaoCorpo() {
 		return regiaoCorpo;
 	}
