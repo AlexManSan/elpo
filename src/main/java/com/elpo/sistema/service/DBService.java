@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.elpo.domain.Comorbidade;
+import com.elpo.domain.IdadePaciente;
 import com.elpo.repository.ComorbidadeRepository;
+import com.elpo.repository.IdadePacienteRepository;
 
 @Service
 public class DBService {
@@ -18,7 +20,8 @@ public class DBService {
 	@Autowired
 	private ComorbidadeRepository cormoRep;
 	
-	
+	@Autowired
+	private IdadePacienteRepository idadePacRep;
 	
 	/**
 	 * Método responsavel por criar os registros no ambiente de teste
@@ -33,15 +36,14 @@ public class DBService {
 		Comorbidade como5 = new Comorbidade("Úlcera por pressão ou neuropatia previamente diagnosticada ou trombose venosa profunda", 5);
 		cormoRep.saveAll(Arrays.asList(como1,como2,como3,como4,como5)); 
 		
+		System.out.println(">>>>>>>>>>>>> Criando IdadePaciente >>>>>>>>>>>>>>>>");
+		IdadePaciente ip1 = new IdadePaciente("Entre 18 e 39 anos", 1);
+		IdadePaciente ip2 = new IdadePaciente("Entre 40 e 59 anos", 2);
+		IdadePaciente ip3 = new IdadePaciente("Entre 60 e 69 anos", 3);
+		IdadePaciente ip4 = new IdadePaciente("Entre 70 e 79 anos", 4);
+		IdadePaciente ip5 = new IdadePaciente("> 80 anos", 5);
 		
-//		System.out.println(">>>>>>>>>>>>> Criando Avaliadores >>>>>>>>>>>>>>>>");
-//		Avaliador av1 = new Avaliador(null, "Marcos Santos", true);
-//		Avaliador av2 = new Avaliador(null, "Manoel Oliveira", true);
-//		Avaliador av3 = new Avaliador(null, "Lúcia Soares", true);
-//		Avaliador av4 = new Avaliador(null, "Denise Custódio", false);
-//		Avaliador av5 = new Avaliador(null, "Henrique da Silva", true);
-//		Avaliador av6 = new Avaliador(null, "João Carlos", false);
-//		avaliRep.saveAll(Arrays.asList(av1,av2,av3,av4,av5,av6)); 		
+		idadePacRep.saveAll(Arrays.asList(ip1,ip2,ip3,ip4,ip5)); 		
 //		
 //		System.out.println(">>>>>>>>>>>>> Criando Faltas >>>>>>>>>>>>>>>>");
 //		String EA="A- Iniciar a prova sem estar com o capacete devidamente ajustado a cabeça ou sem viseira ou óculos de proteção.";
