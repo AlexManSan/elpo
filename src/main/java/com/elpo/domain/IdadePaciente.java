@@ -19,8 +19,26 @@ public class IdadePaciente extends GenericDomain {
     @NotNull(message = "O campo 'SCORE' é obrigatório.")
     @Column(nullable = false)
     private Integer score;
-
-    public String getIdade() {
+    
+    /**
+     * Método Construtor Vazio
+     */
+    public IdadePaciente() {}
+    
+    /**
+     * Método Cosntrutor com atributos
+     * @param idade
+     * @param score
+     */
+    public IdadePaciente(@NotNull(message = "O campo 'IDADE' é obrigatório.") String idade,
+			@NotNull(message = "O campo 'SCORE' é obrigatório.") Integer score) {
+		super();
+		this.idade = idade;
+		this.score = score;
+	}
+    
+    
+	public String getIdade() {
         return idade;
     }
     public void setIdade(String idade) {
