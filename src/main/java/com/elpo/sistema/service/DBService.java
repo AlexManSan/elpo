@@ -1,10 +1,12 @@
 package com.elpo.sistema.service;
 
 import java.text.ParseException;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.elpo.domain.Comorbidade;
 import com.elpo.repository.ComorbidadeRepository;
 
 @Service
@@ -24,7 +26,13 @@ public class DBService {
 	 */
 	public void instantiateTestDatabase() throws ParseException {
 		System.out.println(">>>>>>>>>>>>> Criando Comorbidades >>>>>>>>>>>>>>>>");
- 
+		Comorbidade como1 = new Comorbidade("Sem comorbidade", 1);
+		Comorbidade como2 = new Comorbidade("Doença vascular", 2);
+		Comorbidade como3 = new Comorbidade("Diabetes mellitus", 3);
+		Comorbidade como4 = new Comorbidade("Obesidade ou desnutrição", 4);
+		Comorbidade como5 = new Comorbidade("Úlcera por pressão ou neuropatia previamente diagnosticada ou trombose venosa profunda", 5);
+		cormoRep.saveAll(Arrays.asList(como1,como2,como3,como4,como5)); 
+		
 		
 //		System.out.println(">>>>>>>>>>>>> Criando Avaliadores >>>>>>>>>>>>>>>>");
 //		Avaliador av1 = new Avaliador(null, "Marcos Santos", true);
