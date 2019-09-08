@@ -12,12 +12,14 @@ import com.elpo.domain.PosicaoMembros;
 import com.elpo.domain.SuperficieSuporte;
 import com.elpo.domain.TpAnestesia;
 import com.elpo.domain.TpCirurgia;
+import com.elpo.domain.TpPosicaoCirurgica;
 import com.elpo.repository.ComorbidadeRepository;
 import com.elpo.repository.IdadePacienteRepository;
 import com.elpo.repository.PosicaoMembrosRepository;
 import com.elpo.repository.SuperficieSuporteRepository;
 import com.elpo.repository.TpAnestesiaRepository;
 import com.elpo.repository.TpCirurgiaRepository;
+import com.elpo.repository.TpPosicaoCirurgicaRepository;
 
 @Service
 public class DBService {
@@ -42,6 +44,9 @@ public class DBService {
 	
 	@Autowired
 	private TpCirurgiaRepository tcRep;
+	
+	@Autowired
+	private TpPosicaoCirurgicaRepository tpRep;
 	
 	/**
 	 * Método responsavel por criar os registros no ambiente de teste
@@ -95,5 +100,13 @@ public class DBService {
 		TpCirurgia tc4 = new TpCirurgia("acima de 4h até 6 horas", 4);
 		TpCirurgia tc5 = new TpCirurgia("acima de 6h", 5);
 		tcRep.saveAll(Arrays.asList(tc1,tc2,tc3,tc4,tc5));
+		
+		System.out.println(">>>>>>>>>>>>> Criando Tipo de Posição Cirurgica >>>>>>>>>>>>>>>>");
+		TpPosicaoCirurgica tp1 = new TpPosicaoCirurgica("Supina", 1, null);
+		TpPosicaoCirurgica tp2 = new TpPosicaoCirurgica("Lateral", 2, null);
+		TpPosicaoCirurgica tp3 = new TpPosicaoCirurgica("Trendelemburg", 3, null);
+		TpPosicaoCirurgica tp4 = new TpPosicaoCirurgica("Prona", 4, null);
+		TpPosicaoCirurgica tp5 = new TpPosicaoCirurgica("Litotômica", 5, null);
+		tpRep.saveAll(Arrays.asList(tp1,tp2,tp3,tp4,tp5));
 	}
 }
