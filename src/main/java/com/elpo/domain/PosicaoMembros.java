@@ -19,8 +19,25 @@ public class PosicaoMembros extends GenericDomain {
     @NotNull(message = "O campo 'SCORE' é obrigatório.")
     @Column(nullable = false)
     private Integer score;
+    
+    /**
+     * Método construtor vazio
+     */
+    public PosicaoMembros() {}
 
-    public String getDescricao() {
+    /**
+     * Método Construtor com atributos
+     * @param descricao
+     * @param score
+     */
+    public PosicaoMembros(@NotNull(message = "O campo 'DESCRIÇÃO' é obrigatório.") String descricao,
+			@NotNull(message = "O campo 'SCORE' é obrigatório.") Integer score) {
+		super();
+		this.descricao = descricao;
+		this.score = score;
+	}
+    
+	public String getDescricao() {
         return descricao;
     }
     public void setDescricao(String descricao) {
