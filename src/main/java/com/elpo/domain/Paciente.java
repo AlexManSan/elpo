@@ -21,6 +21,23 @@ public class Paciente extends GenericDomain{
     @NotNull(message = "O campo PRONTUÁRIO é obrigatório.")
     @Column(nullable = false)
     private Integer prontuario;
+    
+    /**
+     * Construtor Vazio
+     */
+    public Paciente() {	}
+    
+    /**
+     * Construtor com atributos
+     * @param nome
+     * @param prontuario
+     */
+	public Paciente(@NotNull @Size(min = 3, max = 20) String nome,
+			@NotNull(message = "O campo PRONTUÁRIO é obrigatório.") Integer prontuario) {
+		super();
+		this.nome = nome;
+		this.prontuario = prontuario;
+	}
 
 	public String getNome() {
 		return nome;
