@@ -15,7 +15,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
- * Não mconsegui fazer funcionar direito
+ * Atenção esta configuração de cors se tiver usadno o spring security também precisa autorizar na classe
+ * SecurityConfig.java, neste meu caso aqui a configuração que está funcionando é a dela do spring security
  * @author Alex
  *
  */
@@ -40,10 +41,11 @@ public class CorsFilter implements Filter {
 		
 		// permitindo tudo para o origin permitida
 //		if(originPermitida.equals(req.getHeader("Origin"))) {
-			
+			resp.setHeader("Access-Control-Allow-Origin", "*");
 			resp.setHeader("access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
 			resp.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
 //        	resp.setHeader("Access-Control-Max-Age", "3600");
+			resp.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization");
         	
         	resp.setStatus(HttpServletResponse.SC_OK);
 //		}else {

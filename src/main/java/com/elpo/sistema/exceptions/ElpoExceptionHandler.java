@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.NonUniqueResultException;
+
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -71,6 +74,14 @@ public class ElpoExceptionHandler extends ResponseEntityExceptionHandler{
 	@ExceptionHandler({EmptyResultDataAccessException.class})
 	@ResponseStatus(HttpStatus.NOT_FOUND) // 404
 	public void handleEmptyResultDataAccessException(RuntimeException ex) { }
+	
+	@ExceptionHandler({NonUniqueResultException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	public void handleNonUniqueResultException(RuntimeException ex) { }
+	
+	@ExceptionHandler({ConstraintViolationException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	public void handleConstraintViolationException(RuntimeException ex) { }
 	
 	/**
 	 * cria uma lista com erros de cada atributo da classe 

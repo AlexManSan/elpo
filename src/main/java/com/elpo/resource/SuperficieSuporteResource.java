@@ -52,7 +52,7 @@ public class SuperficieSuporteResource {
 	 */
 	@GetMapping
 	public List<SuperficieSuporte> listar() {
-		System.out.println("Entrei no método @GetMapping");	 	
+		System.out.println("Entrei no método @GetMapping listar() /ssuportes");	 	
 		return dao.findAllOrderDescricaoAsc();
 	}
 	

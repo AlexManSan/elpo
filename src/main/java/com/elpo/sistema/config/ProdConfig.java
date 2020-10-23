@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 public class ProdConfig {
 
 	/**
-	 * Por ser a implementação test neste método eu informo qual Classe será implementada o emailService
+	 * Por ser a implementação prod neste método eu informo qual Classe será implementada o emailService
 	 * @return
 	 */
 //	@Bean

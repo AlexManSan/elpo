@@ -18,6 +18,9 @@ public class Paciente extends GenericDomain{
     @Column(nullable = false)
     private String nome;
     
+	@Column(nullable = false)
+    private Integer idade;
+	
     @NotNull(message = "O campo PRONTUÁRIO é obrigatório.")
     @Column(nullable = false)
     private Integer prontuario;
@@ -32,10 +35,11 @@ public class Paciente extends GenericDomain{
      * @param nome
      * @param prontuario
      */
-	public Paciente(@NotNull @Size(min = 3, max = 20) String nome,
+	public Paciente(@NotNull @Size(min = 3, max = 20) String nome, @NotNull Integer idade,
 			@NotNull(message = "O campo PRONTUÁRIO é obrigatório.") Integer prontuario) {
 		super();
 		this.nome = nome;
+		this.idade = idade;
 		this.prontuario = prontuario;
 	}
 
@@ -47,6 +51,14 @@ public class Paciente extends GenericDomain{
 		this.nome = nome;
 	}
 
+	public Integer getIdade() {
+		return idade;
+	}
+	
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+	
 	public Integer getProntuario() {
 		return prontuario;
 	}

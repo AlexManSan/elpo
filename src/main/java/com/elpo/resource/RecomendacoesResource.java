@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.elpo.domain.Comorbidade;
-import com.elpo.repository.ComorbidadeRepository;
+import com.elpo.domain.Recomendacoes;
+import com.elpo.domain.TpPosicaoCirurgica;
+import com.elpo.repository.RecomendacoesRepository;
+import com.elpo.repository.TpPosicaoCirurgicaRepository;
 import com.elpo.sistema.event.RecursoCriadoEvent;
 
 /**
- * Recurso de Comorbidade caminho de acesso: http://localhost:8080/comorbidades
+ * Recurso de Recomendacoes caminho de acesso: http://localhost:8080/recomendacoes
  * Classe de Recurso atenção para:
  * Status Code: 
  * 2xx -> Sucesso
@@ -36,24 +38,27 @@ import com.elpo.sistema.event.RecursoCriadoEvent;
  * @author Alex
  */
 @RestController // já converte pra json
-@RequestMapping("/comorbidades")
-public class ComorbidadeResource {
+@RequestMapping("/recomendacoes")
+public class RecomendacoesResource {
 
 	@Autowired
-	private ComorbidadeRepository dao;
+	private RecomendacoesRepository dao;
+	
+	@Autowired
+	private TpPosicaoCirurgicaRepository daoTpPosCir;
 	
 	@Autowired
 	private ApplicationEventPublisher eventPublisher;
 
 	/**
-	 * http://localhost:8080/comorbidades 
+	 * http://localhost:8080/recomendacoes 
 	 * 200 ok
 	 * @return
 	 */
 	@GetMapping
-	public List<Comorbidade> listar() {
-		System.out.println("Entrei no método @GetMapping listar() /comorbidades");
-		List<Comorbidade> lista = dao.findAllOrderDescricaoAsc();
+	public List<Recomendacoes> listar() {
+		System.out.println("Entrei no método @GetMapping listar() /recomendacoes");
+		List<Recomendacoes> lista = dao.findAll();
 		
 //		for(Comorbidade c: lista) {
 //			System.out.println(c.getId() + " - " + c.getDescricao());
@@ -63,30 +68,48 @@ public class ComorbidadeResource {
 	}
 	
 	/**
-     * http://localhost:8080/comorbidades/{id}
+     * http://localhost:8080/recomendacoes/{id}
      * @param codigo
      * @return 
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Comorbidade> buscarPorCodigo(@PathVariable Long id){
+    public ResponseEntity<Recomendacoes> buscarPorCodigo(@PathVariable Long id){
         System.out.println("Entrei no método @GetMapping({id})");
-        Optional<Comorbidade> obj = dao.findById(id);
+        Optional<Recomendacoes> obj = dao.findById(id);
 		return obj.isPresent() ? ResponseEntity.ok(obj.get()) : ResponseEntity.notFound().build();  
          
+    }
+    
+    /**
+     * http://localhost:8080/recomendacoes/tpposicaocirurgica/{id}
+     * @param codigo
+     * @return 
+     */
+    @GetMapping("/tpposicaocirurgica/{id}")
+    public List<Recomendacoes> buscarPorTpPosicaoCirurgica(@PathVariable Long id){
+        System.out.println("Entrei no método @GetMapping buscarPorTpPosicaoCirurgica(id) /recomendacoes/tpposicaocirurgica/{id}");
+        Optional<TpPosicaoCirurgica> obj = daoTpPosCir.findById(id);
+        TpPosicaoCirurgica objBanco = obj.get();
+        List<Recomendacoes> lista = null;
+        
+        if(objBanco != null){
+        	lista = dao.findByTpPosicaoCirurgica(objBanco);
+        }
+		return lista;
     }
 
     
 	/**
-	 * Configurado somente para Criar http://localhost:8080/comorbidades 
+	 * Configurado somente para Criar http://localhost:8080/tpposicaocirurgica 
 	 * 201 created
 	 * @param obj
 	 * @return
 	 */
 	@PostMapping
 //	@ResponseStatus(HttpStatus.CREATED) // retorna o 201 created não preciso deste porque ja estou retornando 
-	public ResponseEntity<Comorbidade> criar(@Valid @RequestBody Comorbidade obj, HttpServletResponse response) {
+	public ResponseEntity<Recomendacoes> criar(@Valid @RequestBody Recomendacoes obj, HttpServletResponse response) {
 		System.out.println("Entrei no método @PostMapping");
-		Comorbidade objSalvo = dao.save(obj);
+		Recomendacoes objSalvo = dao.save(obj);
 		
 		// depois de criar o objeto eu informo para o heder location o caminho para recuperar o cadastro criado
 		// que será http://localhost:8080/comorbidades/10
@@ -102,7 +125,7 @@ public class ComorbidadeResource {
 	}
 	
 	/**
-     * http://localhost:8080/comorbidades/{id}
+     * http://localhost:8080/tpposicaocirurgica/{id}
      * @param codigo
      * @return 
      */
@@ -114,10 +137,10 @@ public class ComorbidadeResource {
     } 
     
     @PutMapping("/{id}")
-    public ResponseEntity<Comorbidade> atualizar(@PathVariable Long id, @Valid @RequestBody Comorbidade obj){
+    public ResponseEntity<Recomendacoes> atualizar(@PathVariable Long id, @Valid @RequestBody Recomendacoes obj){
     	System.out.println("Entrei no método @PutMapping(/{id})" + id);
-    	Optional<Comorbidade> objOpt = dao.findById(id);
-        Comorbidade objSalvo = objOpt.get();
+    	Optional<Recomendacoes> objOpt = dao.findById(id);
+    	Recomendacoes objSalvo = objOpt.get();
     	BeanUtils.copyProperties(obj, objSalvo, "id");
     	dao.save(objSalvo);
     	return ResponseEntity.ok(objSalvo);

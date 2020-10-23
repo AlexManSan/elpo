@@ -52,7 +52,7 @@ public class PosicaoMembrosResource {
 	 */
 	@GetMapping
 	public List<PosicaoMembros> listar() {
-		System.out.println("Entrei no método @GetMapping");	 	
+		System.out.println("Entrei no método @GetMapping listar() /pmembros");	 	
 		return dao.findAllOrderDescricaoAsc();
 	}
 	

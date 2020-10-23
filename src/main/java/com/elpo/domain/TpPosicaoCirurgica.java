@@ -1,15 +1,8 @@
 package com.elpo.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  * Tipo de Posição Cirurgica
@@ -27,29 +20,39 @@ public class TpPosicaoCirurgica extends GenericDomain {
     @Column(nullable = false)
     private Integer score;
     
- 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tpPosicaoCirurgica")
- 	@Fetch(FetchMode.SUBSELECT)
- 	private List<Recomendacoes> recomendacoes;
+    @NotNull(message = "O campo 'IMG' é obrigatório.")
+    @Column(nullable = false)
+    private String img;
+    
+// 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tpPosicaoCirurgica")
+// 	@Fetch(FetchMode.SUBSELECT)
+// 	private List<Recomendacoes> recomendacoes;
 
  	/**
  	 * Método Construtor Vazio
  	 */
  	public TpPosicaoCirurgica() {}
  	
- 	/**
- 	 * Método cosntrutor com atributos
- 	 * @param descricao
- 	 * @param score
- 	 * @param recomendacoes
- 	 */
-    public TpPosicaoCirurgica(@NotNull(message = "O campo 'DESCRIÇÃO' é obrigatório.") String descricao,
-			@NotNull(message = "O campo 'SCORE' é obrigatório.") Integer score, List<Recomendacoes> recomendacoes) {
+ 	
+    /**
+     * Método cosntrutor com atributos
+     * @param descricao
+     * @param score
+     * @param img
+     * @param recomendacoes
+     */
+	public TpPosicaoCirurgica(@NotNull(message = "O campo 'DESCRIÇÃO' é obrigatório.") String descricao,
+			@NotNull(message = "O campo 'SCORE' é obrigatório.") Integer score,
+			@NotNull(message = "O campo 'IMG' é obrigatório.") String img) {
 		super();
 		this.descricao = descricao;
 		this.score = score;
-		this.recomendacoes = recomendacoes;
+		this.img = img;
+//		this.recomendacoes = recomendacoes;
 	}
-    
+
+
+
 	public String getDescricao() {
         return descricao;
     }
@@ -62,10 +65,16 @@ public class TpPosicaoCirurgica extends GenericDomain {
     public void setScore(Integer score) {
         this.score = score;
     }
-    public List<Recomendacoes> getRecomendacoes() {
-		return recomendacoes;
+    public String getImg() {
+		return img;
 	}
-    public void setRecomendacoes(List<Recomendacoes> recomendacoes) {
-		this.recomendacoes = recomendacoes;
+    public void setImg(String img) {
+		this.img = img;
 	}
+//    public List<Recomendacoes> getRecomendacoes() {
+//		return recomendacoes;
+//	}
+//    public void setRecomendacoes(List<Recomendacoes> recomendacoes) {
+//		this.recomendacoes = recomendacoes;
+//	}
 }

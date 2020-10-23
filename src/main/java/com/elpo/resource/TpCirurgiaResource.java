@@ -52,7 +52,7 @@ public class TpCirurgiaResource {
 	 */
 	@GetMapping
 	public List<TpCirurgia> listar() {
-		System.out.println("Entrei no método @GetMapping");	 	
+		System.out.println("Entrei no método @GetMapping listar() /tpcirurgias");	 	
 		return dao.findAllOrderDescricaoAsc();
 	}
 	

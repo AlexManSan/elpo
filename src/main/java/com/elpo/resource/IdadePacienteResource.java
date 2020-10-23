@@ -52,7 +52,7 @@ public class IdadePacienteResource {
 	 */
 	@GetMapping
 	public List<IdadePaciente> listar() {
-		System.out.println("Entrei no método @GetMapping");	 	
+		System.out.println("Entrei no método @GetMapping listar() /idade_pacientes");	 	
 		return dao.findAllOrderIdadeAsc();
 	}
 	
